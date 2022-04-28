@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import { useQuery } from "react-query";
+import { CitiesList } from "../src/cities/CitiesList";
+import { CitiesProvider } from "../src/cities/CityProvider";
 
 const City = () => {
     const router = useRouter()
@@ -26,6 +28,9 @@ const City = () => {
     return (
         <div>
             <h1>A city was detected</h1>
+            <CitiesProvider>
+                <CitiesList />
+            </CitiesProvider>
         </div>
     )
 }
