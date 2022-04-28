@@ -5,7 +5,7 @@ const City = () => {
     const router = useRouter()
     const { city } = router.query
 
-    console.log(city);
+    console.log({ city });
 
     const API_KEY = `315a1a9065021509b2e5d8defe259136`;
     const { isLoading, data } = useQuery('city', () =>
@@ -17,7 +17,7 @@ const City = () => {
         }
     )
 
-    console.log(data);
+    console.log({ data });
 
     if (!!city) {
         return <p>No city was detected.</p>
