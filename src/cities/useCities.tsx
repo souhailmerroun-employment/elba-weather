@@ -39,7 +39,14 @@ export function useCitiesCollection(): [CitiesState, React.Dispatch<CitiesAction
                 return { cities: citiesWithNew, initialized: true };
 
             case 'sort':
-                const citiesSorted = state.cities.sort((a, b) => a.temperature > b.temperature ? 1 : -1);
+
+                let citiesSorted: City[] = [];
+                if (action.payload === 'asc') {
+                    citiesSorted = state.cities.sort((a, b) => a.temperature > b.temperature ? 1 : -1);
+                } else if (action.payload === 'desc') {
+                    citiesSorted = state.cities.sort((a, b) => a.temperature > b.temperature ? -1 : 1);
+                }
+
                 return { cities: citiesSorted, initialized: true };
             default:
                 return state
