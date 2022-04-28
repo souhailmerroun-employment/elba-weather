@@ -19,7 +19,7 @@ const City = () => {
 
     console.log({ data });
 
-    if (!!city) {
+    if (city === undefined) {
         return <p>No city was detected.</p>
     }
 
