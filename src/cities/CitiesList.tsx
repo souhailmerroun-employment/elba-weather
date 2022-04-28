@@ -1,24 +1,20 @@
 import React, { useContext, useState } from 'react';
 
 import { CitiesContext } from './CityProvider';
+import CityWeatherCard from './CityWeatherCard';
 import { City } from './types';
-
-const API_KEY = `315a1a9065021509b2e5d8defe259136`;
+import { fetchOpenWeatherApi } from './useCities';
 
 export const CitiesList = () => {
     const { cities, citiesDispatch } = useContext(CitiesContext);
     const [loading, setLoading] = useState(false);
     const [cityName, setCityName] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
 
-        const city: Omit<City, "id"> = { name: cityName };
-        const response = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city.name}&appid=${API_KEY}`)
-        const openweathermap_city = await response.json();
-        city.latitude = openweathermap_city[0].lat;
-        city.longitude = openweathermap_city[0].lon;
+        const city: Omit<City, "id"> = await fetchOpenWeatherApi(cityName);
 
         citiesDispatch({ type: 'add', payload: { city } });
         setCityName('');
@@ -30,9 +26,7 @@ export const CitiesList = () => {
             {cities.map(city => {
                 return (
                     <ul key={city.id}>
-                        {city.name}
-                        {city.latitude}
-                        {city.longitude}
+                        <CityWeatherCard icon={city.weatherIcon} name={city.name} temperature={city.temperature} />
                     </ul>
                 )
             })}

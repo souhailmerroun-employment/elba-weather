@@ -10,7 +10,11 @@ type CitiesContextType = {
 
 export const CitiesContext = React.createContext<CitiesContextType>({ cities: [], citiesDispatch: () => { } });
 
-export const CitiesProvider: React.FC = ({ children }) => {
+type Props = {
+    children: React.ReactNode
+}
+
+export const CitiesProvider = ({ children }: Props) => {
     const [{ initialized, cities }, citiesDispatch] = useCitiesCollection();
     return (
         <CitiesContext.Provider value={{ cities, citiesDispatch }}>
