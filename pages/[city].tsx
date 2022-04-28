@@ -26,7 +26,7 @@ const City = () => {
         if (city !== undefined && typeof city === 'string') {
             fetchData(city);
         }
-    })
+    }, [])
 
     return (
         <div>

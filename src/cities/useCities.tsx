@@ -31,7 +31,6 @@ export function useCitiesCollection(): [CitiesState, React.Dispatch<CitiesAction
     const cityReducer = (state: CitiesState, action: CitiesAction): CitiesState => {
         switch (action.type) {
             case 'fetch':
-                console.log('fetching cities');
                 return { cities: action.payload.data, initialized: true };
 
             case 'add':
