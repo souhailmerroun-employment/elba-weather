@@ -1,6 +1,8 @@
 export interface City {
-    id: string,
+    id: string
     name: string
+    latitude?: number
+    longitude?: number
 }
 
 export interface CityFetchAction {

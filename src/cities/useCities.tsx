@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
+import { useQuery } from 'react-query';
 import { v4 as uuid } from 'uuid';
 
 import { City, CitiesAction } from './types';
@@ -12,6 +13,7 @@ export function useCitiesCollection(): [CitiesState, React.Dispatch<CitiesAction
     const cityReducer = (state: CitiesState, action: CitiesAction): CitiesState => {
         switch (action.type) {
             case 'fetch':
+                console.log('fetching cities');
                 return { cities: action.payload.data, initialized: true };
 
             case 'add':
@@ -44,7 +46,7 @@ export function useCitiesCollection(): [CitiesState, React.Dispatch<CitiesAction
     });
 
     useEffect(() => {
-        dispatch({ type: 'fetch', payload: { data: [{ id: 'randomid', name: 'Paris' }, { id: 'randomid', name: 'New York' }] } });
+        dispatch({ type: 'fetch', payload: { data: [{ id: 'randomid', name: 'Paris' }, { id: 'randomidtwo', name: 'New York' }] } });
     }, []);
 
     return [state, dispatch];
