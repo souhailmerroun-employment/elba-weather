@@ -28,10 +28,21 @@ const City = () => {
         }
     }, [])
 
+    const handleSortHot = () => {
+        citiesDispatch({ type: 'sort', payload: 'desc' })
+    }
+
+    const handleSortCold = () => {
+        citiesDispatch({ type: 'sort', payload: 'asc' })
+    }
+
     return (
         <div>
             <h1 className="border-2">A city was detected</h1>
             <CitiesList />
+
+            <button onClick={handleSortHot}>🥵 sort by hot</button>
+            <button onClick={handleSortCold}>🥶 sort by cold</button>
         </div>
     )
 }

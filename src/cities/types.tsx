@@ -21,6 +21,11 @@ export interface CityAddAction {
     }
 }
 
+export interface CitySortAction {
+    type: 'sort',
+    payload: 'asc' | 'desc'
+}
+
 /*export interface CityDeleteAction {
     type: 'delete',
     payload: {
@@ -39,3 +44,4 @@ export interface CityRateAction {
 export type CitiesAction =
     | CityFetchAction
     | CityAddAction
+    | CitySortAction

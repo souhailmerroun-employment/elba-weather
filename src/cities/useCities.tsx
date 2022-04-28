@@ -38,20 +38,9 @@ export function useCitiesCollection(): [CitiesState, React.Dispatch<CitiesAction
                 const citiesWithNew = [...state.cities, { ...city, id: uuid() }];
                 return { cities: citiesWithNew, initialized: true };
 
-            /*case 'delete':
-                const moviesWithoutDeleted = state.movies.filter(movie => movie.id !== action.payload.movieId);
-                return { movies: moviesWithoutDeleted, initialized: true };
-
-            case 'rate':
-                const updatedRatingsMovie = state.movies.map(movie => {
-                    if (movie.id === action.payload.movieId) {
-                        return { ...movie, ratings: [...movie.ratings, action.payload.rating] };
-                    }
-
-                    return movie;
-                });
-                return { movies: updatedRatingsMovie, initialized: true };*/
-
+            case 'sort':
+                const citiesSorted = state.cities.sort((a, b) => a.temperature > b.temperature ? 1 : -1);
+                return { cities: citiesSorted, initialized: true };
             default:
                 return state
         }
